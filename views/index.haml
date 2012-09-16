@@ -1,0 +1,53 @@
+%link{ :rel => "stylesheet", :href => "style.css", :type => "text/css"}
+%script{ :src => "https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" }
+
+%h1 15 puzzle solver
+
+- positions = [10, 110, 210, 310]
+%div.board
+	- positions.each_with_index do |top_pos, top_ind|
+		- positions.each_with_index do |left_pos, left_ind|
+			%div.cell{ :style => "top:#{top_pos}px; left:#{left_pos}px;" }
+				- cell_val = top_ind*4 + ( left_ind + 1 )
+				- if (cell_val) == 16
+					= 0
+				- else
+					= cell_val 
+
+%a{ :href => '#', :id => 'shuffle' } Shuffle
+%a{ :href => '#', :id => 'solve' } Solve					
+
+:javascript
+	$(function(){
+		$("#shuffle").click(function(){
+			var arr = boardState();
+			var jsonArr = {board: arr};		
+
+			$.post('/shuffle.json', jsonArr, function(data){
+				var shuffledStateArr = data;
+				setBoardState(shuffledStateArr);
+			}, 'json');
+		});
+
+
+		$("#solve").click(function(){
+			alert("helo");
+		});
+
+		function boardState(){
+			var arr = [];
+			$("div.cell").each( function(){
+				arr.push( parseInt($(this).text()) );
+			});
+			return arr;
+		}
+
+		function setBoardState( array ){
+			$("div.cell").each( function(index){
+				$(this).text(array[index]);
+			})
+		}
+
+	});
+
+

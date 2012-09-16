@@ -1,0 +1,10 @@
+div.board{
+	height: 475px;
+    overflow: hidden;
+    position: relative;
+    width: 425px;
+}
+
+div.cell{
+	 position: absolute;	
+}
