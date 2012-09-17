@@ -1,14 +1,14 @@
 GIT
   remote: git://github.com/sld/astar-15puzzle-solver.git
-  revision: 643d48eccc30efa4d6442f66a500ddd42dd1a8e8
+  revision: f65cffea0a78c64e6f1f4a5dd694ccddb7fdf3ea
   specs:
     fifteen_puzzle (0.0.1)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    backports (2.5.3)
-    eventmachine (0.12.10)
+    backports (2.6.4)
+    eventmachine (1.0.0)
     haml (3.1.7)
     rack (1.4.1)
     rack-protection (1.2.0)

@@ -31,7 +31,27 @@
 
 
 		$("#solve").click(function(){
-			alert("helo");
+			var arr = boardState();
+			var jsonArr = {board: arr};
+			var solvedArrs;
+			var timer;
+
+
+			$.ajaxSetup({async: false});
+			$.post('/solve.json', jsonArr, function(data){
+				solvedArrs = data;
+			}, 'json');
+
+
+			var i = 0;
+			(function iterator() {
+					setBoardState(solvedArrs[i]);
+
+			    if(++i<solvedArrs.length) {
+			      setTimeout(iterator, 1000);
+			    }
+			})();
+
 		});
 
 		function boardState(){
